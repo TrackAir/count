@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>计算器</title>
+    <script src="vue.js"></script>
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="app" v-cloak>  
+        <input type="text" v-model="qian">
+        <select v-model="fuhao">
+            <option v-for="item of sign" :value="item.fuhao">{{item.title}}</option>
+        </select>
+        <input type="text" v-model="hou" >
+        <span v-bind="equal">=</span>
+        <input type="text" v-model="result">
+    </div>
+    <script>
+        var app=new Vue({
+            el:"#app",
+            data:{
+                sign:[
+                    {title:"+",fuhao:"+"},
+                    {title:"*",fuhao:"*"},
+                    {title:"÷",fuhao:"÷"}
+                ],
+                qian:"",
+                hou: "",
+                fuhao:"",
+                result:""
+            },
+            computed:{
+                equal:function(){
+                    switch(this.fuhao){
+                        case "+":this.result= Number(this.qian)+Number(this.hou);
+                        break;
+                        case "-":this.result= Number(this.qian)-Number(this.hou);
+                        break;
+                        case "*":this.result= Number(this.qian)*Number(this.hou);
+                        break;
+                        case "÷":this.result= Number(this.qian)/Number(this.hou);
+                        break;
+                    }
+                }
+            }
+
+        })
+    </script>
+</body>
+</html>
